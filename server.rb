@@ -4,6 +4,7 @@ require 'webrick'
 require 'erb'
 require 'router'
 require 'dispatcher'
+require 'load_models'
 include WEBrick
 
 s = HTTPServer.new(:Port => 3000)
@@ -30,6 +31,8 @@ class MyServlet < HTTPServlet::AbstractServlet
   end
   
 end
+
+LoadModels.load_models
 
 s.mount("/", MyServlet)
 
