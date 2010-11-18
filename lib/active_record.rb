@@ -19,7 +19,18 @@ class ActiveRecord
    end
    
    def save
-      
+    attributes_hash = {}
+     db = Connection.get_connection
+     fields = db.query("SHOW FIELDS FROM `#{self.class}`")
+     
+     fields.each do |row|
+        attributes_hash.merge!({ row[0].to_s => self.send(row[0]) })
+     end
+     attributes_hash.delete("id")
+     fields_names = attributes_hash.collect{|k, v| k}.join(",")
+     fields_values = attributes_hash.collect{|k, v| "'" + v + "'"}.join(",")
+     insert_query = db.query("INSERT INTO #{self.class} (#{fields_names}) VALUES (#{fields_values})")
+     fields.free
    end
    
    def my_class
