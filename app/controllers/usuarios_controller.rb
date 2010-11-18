@@ -8,13 +8,17 @@ class UsuariosController
   end
   
   def new(params)
-    u = Usuarios.find(1)
-    
+    u = Usuarios.new
+    u.nombre = "borre"
+    u.email = "b@b.com"
+    u.edad = "10"
+    u.save
+
     return binding
   end
   
   def show(params)
-    usuario = params[:id]
+    usuario = Usuarios.find(params[:id].to_i)
     
     return binding
   end
