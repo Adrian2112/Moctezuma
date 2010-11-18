@@ -17,28 +17,14 @@ module Dispatcher
     controller = params[:controller]
     action = params[:action]
 
-    begin
-      vista = File.new("./app/views/#{controller}/#{action}.html.erb").read
-
-      # carga el controlador que es necesario
-      require "./app/controllers/#{controller}_controller"
-
-      # crea una nueva instancia de la clase del controllador
-      controller_class = Kernel.const_get(controller.capitalize+"Controller").new
-
-      bind = controller_class.send(action, params)    
-      erb = ERB.new(vista)
-
-      response << erb.result(bind)
-
-      controller_class = nil
-      return response
-
-    rescue Errno::ENOENT
-      vista = File.new("./404.html").read
-      response << vista
-      return response
-    end    
+    # crea una nueva instancia de la clase del controllador
+    controller_class = Kernel.const_get(controller.capitalize+"Controller").new(params)
+    
+    response << controller_class.render
+    
+    controller_class = nil
+    return response
+    
   end
 
 end

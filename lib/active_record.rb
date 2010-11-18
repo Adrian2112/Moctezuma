@@ -1,5 +1,3 @@
-require './lib/connection'
-
 class ActiveRecord
   
   # ActiveRecord se encarga de crear los objetos en la base de datos y

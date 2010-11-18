@@ -3,17 +3,17 @@
 <form action="/usuarios/new" method="post">
 	<p>
 		<label for="nombre">Nombre</label><br/>
-		<input type="text" name="nombre" value="<%= u.nombre %>"/>
+		<input type="text" name="nombre" value="<%= @usuario.nombre %>"/>
 	</p>
 	
 	<p>
 		<label for="edad">Edad</label><br/>
-		<input type="text" name="edad" value="<%= u.edad %>" />
+		<input type="text" name="edad" value="<%= @usuario.edad %>" />
 	</p>
 	
 	<p>
 		<label for="email">Email</label><br/>
-		<input type="text" name="email" value="<%= u.email %>" />
+		<input type="text" name="email" value="<%= @usuario.email %>" />
 	</p>
 	
 	<input type="submit" value="enviar" />

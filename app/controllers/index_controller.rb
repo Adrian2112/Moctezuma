@@ -1,6 +1,5 @@
-class IndexController
-  def index(params)
+class IndexController < ActionController
+  def index
     
-    return binding    
   end
 end

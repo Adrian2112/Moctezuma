@@ -1,5 +1,3 @@
-require './lib/connection'
-
 module LoadModels
   
   # LoadModels se encarga de agregarle los atributos a cada modelo
@@ -12,7 +10,6 @@ module LoadModels
   def LoadModels.load_models
     
     MODELS.each do |modelo|
-      require "./app/models/#{modelo}"
       
       clase = Kernel.const_get(modelo)
     

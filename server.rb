@@ -1,10 +1,9 @@
-$LOAD_PATH << './lib'
-
+# cargamos todos las clases, modulos etc de lib, controllers y models
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/app/controllers/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/app/models/*.rb'].each {|file| require file }
+ 
 require 'webrick'
-require 'erb'
-require 'router'
-require 'dispatcher'
-require 'load_models'
 include WEBrick
 
 s = HTTPServer.new(:Port => 3000)

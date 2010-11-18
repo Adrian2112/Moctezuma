@@ -1,23 +1,17 @@
-require './app/models/usuarios'
-
-class UsuariosController
+class UsuariosController < ActionController
   
-  def index(params)
-    u = Usuarios.all
+  def index
+    @usuarios = Usuarios.all
     
-    return binding
   end
   
-  def new(params)
-    u = Usuarios.find(1)
-
-    return binding
+  def new
+    @usuario = Usuarios.find(1)
   end
   
-  def show(params)
-    usuario = Usuarios.find(params[:id].to_i)
+  def show
+    @usuario = Usuarios.find(params[:id].to_i)
     
-    return binding
   end
   
 end
