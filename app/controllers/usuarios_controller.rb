@@ -1,13 +1,14 @@
+require './app/models/usuarios'
+
 class UsuariosController
   
   def index(params)
-    
+
     return binding
   end
   
   def new(params)
-    nombre = "as"
-    x = params[:action]
+    u = Usuarios.find(3)
     
     return binding
   end

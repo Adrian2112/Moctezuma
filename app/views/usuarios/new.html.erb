@@ -3,15 +3,20 @@
 <form action="/usuarios/new" method="post">
 	<p>
 		<label for="nombre">Nombre</label><br/>
-		<input type="text" name="nombre" />
+		<input type="text" name="nombre" value="<%= u.nombre %>"/>
 	</p>
 	
 	<p>
 		<label for="edad">Edad</label><br/>
-		<input type="text" name="edad" />
+		<input type="text" name="edad" value="<%= u.edad %>" />
 	</p>
 	
-	<input type="submit" value="enviar" >
+	<p>
+		<label for="email">Email</label><br/>
+		<input type="text" name="email" value="<%= u.email %>" />
+	</p>
+	
+	<input type="submit" value="enviar" />
 </form>
 
 <a href="/usuarios/show">Show</a>
