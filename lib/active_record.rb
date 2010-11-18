@@ -14,7 +14,7 @@ class ActiveRecord
     db = Connection.get_connection
     res = db.query("SELECT * FROM #{self.name} WHERE id = #{id} LIMIT 1")
 
-    args = attributes_hash(res).first
+    args = attributes_array(res, db).first
     
     return self.build(args)
   end
@@ -23,7 +23,7 @@ class ActiveRecord
     db = Connection.get_connection
     res = db.query("SELECT * FROM #{self.name}")
     
-    args = attributes_hash(res)
+    args = attributes_array(res, db)
     objects = []
     args.each do |hash|
       objects << self.build(hash)
@@ -56,12 +56,11 @@ class ActiveRecord
     
   end
 
-  # private
+  private
 
-  def self.attributes_hash(mysql_res)
-    attributes = {}
+  def self.attributes_array(mysql_res, db)
     attributes_array = []
-    db = Connection.get_connection
+    attributes = {}
     res = db.query("SHOW FIELDS FROM `#{self.name}`")
 
     res.each do |row|
@@ -69,20 +68,23 @@ class ActiveRecord
     end
     res.free
     
-    attributes_clone = attributes.clone
-    
     mysql_res.each_hash do |row|     
-      attributes_array << attributes_clone
-      actual = attributes_array.last
-      actual.each do |k,v|
-        actual[k] = row[k]
-      end
-      attributes_clone = attributes.clone
+      attributes_array << attributes_hash(attributes, row)
     end
 
     mysql_res.free
 
     return attributes_array
+  end
+  
+  def self.attributes_hash(attributes, row)
+    attributes = attributes.clone
+    
+    attributes.each do |k,v|
+      attributes[k] = row[k]
+    end
+    
+    return attributes
   end
 
 end
