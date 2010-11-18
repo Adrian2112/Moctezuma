@@ -3,14 +3,13 @@ require './app/models/usuarios'
 class UsuariosController
   
   def index(params)
-
+    u = Usuarios.all
+    
     return binding
   end
   
   def new(params)
     u = Usuarios.find(1)
-    u.nombre = "marica"
-    u.save
 
     return binding
   end

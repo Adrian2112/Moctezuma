@@ -1,1 +1,16 @@
 <h1>Index usuarios</h1>
+
+<table>
+	<tr>
+		<th>Nombre</th>
+		<th>Edad</th>
+		<th>Email</th>
+	</tr>
+	<% u.each do |usuario| %>
+		<tr>
+			<td><%= usuario.nombre %></td>
+			<td><%= usuario.edad %></td>
+			<td><%= usuario.email %></td>
+		</tr>
+	<% end %>
+</table>
