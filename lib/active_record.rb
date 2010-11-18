@@ -1,7 +1,7 @@
 require './lib/connection'
 
 class ActiveRecord
-      
+  
   def self.build(args)
     clase = self.new
     args.each do |k,v|
@@ -26,7 +26,7 @@ class ActiveRecord
       self.class
    end 
    
-   # private
+   private
    
    def self.attributes_hash(mysql_res)
      attributes_hash = {}

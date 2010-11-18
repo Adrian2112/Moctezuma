@@ -8,7 +8,7 @@ class UsuariosController
   end
   
   def new(params)
-    u = Usuarios.find(3)
+    u = Usuarios.find(1)
     
     return binding
   end
