@@ -33,10 +33,6 @@ class ActiveRecord
      fields.free
    end
    
-   def my_class
-      self.class
-   end 
-   
    private
    
    def self.attributes_hash(mysql_res)
