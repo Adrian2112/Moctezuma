@@ -1,6 +1,0 @@
-host: localhost
-user: root
-password: root
-database: moctezuma
-port:
-socket: /Applications/MAMP/tmp/mysql/mysql.sock
