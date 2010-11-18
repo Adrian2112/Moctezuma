@@ -2,6 +2,8 @@ require 'rubygems'
 require "mysql"
 
 module Connection
+  
+  # Connection se encarga de obtener la conexion con la base de datos
 
   def Connection.get_connection
     begin

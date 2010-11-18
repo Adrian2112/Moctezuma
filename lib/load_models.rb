@@ -2,6 +2,11 @@ require './lib/connection'
 
 module LoadModels
   
+  # LoadModels se encarga de agregarle los atributos a cada modelo
+  # dinamicamente obteniendolos de la tabla en la base de datos que
+  # tiene el mismo nombre que el modelo
+  
+  # modelos que cargara
   MODELS = ["Usuarios"]
 
   def LoadModels.load_models

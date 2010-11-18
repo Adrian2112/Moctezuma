@@ -1,6 +1,12 @@
 require './lib/connection'
 
 class ActiveRecord
+  
+  # ActiveRecord se encarga de crear los objetos en la base de datos y
+  # de mapear los atributos de la base de datos a un objecto
+  # 
+  # Todos los modelos deben heredar de ActiveRecord
+  # 
 
   def self.build(args)
     clase = self.new
