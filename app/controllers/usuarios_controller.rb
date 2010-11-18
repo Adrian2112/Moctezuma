@@ -8,10 +8,8 @@ class UsuariosController
   end
   
   def new(params)
-    u = Usuarios.new
-    u.nombre = "borre"
-    u.email = "b@b.com"
-    u.edad = "10"
+    u = Usuarios.find(1)
+    u.nombre = "marica"
     u.save
 
     return binding

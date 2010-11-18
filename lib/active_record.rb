@@ -9,6 +9,11 @@ class ActiveRecord
     end
     return clase
   end
+  
+  def all
+    db = Connection.get_connection
+    
+  end
    
    def self.find(id)
      db = Connection.get_connection
@@ -26,11 +31,21 @@ class ActiveRecord
      fields.each do |row|
         attributes_hash.merge!({ row[0].to_s => self.send(row[0]) })
      end
-     attributes_hash.delete("id")
-     fields_names = attributes_hash.collect{|k, v| k}.join(",")
-     fields_values = attributes_hash.collect{|k, v| "'" + v + "'"}.join(",")
-     insert_query = db.query("INSERT INTO #{self.class} (#{fields_names}) VALUES (#{fields_values})")
+     
+     id = attributes_hash.delete("id") 
+     if attributes_hash.id == nil
+       fields_names = attributes_hash.collect{|k, v| k}.join(",")
+       fields_values = attributes_hash.collect{|k, v| "'" + v.to_s + "'"}.join(",")
+        query = "INSERT INTO #{self.class} (#{fields_names}) VALUES (#{fields_values})"
+     else
+       values = attributes_hash.collect{|k ,v | "#{k}='#{v}'"}.join(",")
+       query = "UPDATE #{self.class} SET #{values} WHERE id = #{id}"
+          
+     end
+     db.query(query)
      fields.free
+     
+     
    end
    
    def my_class
