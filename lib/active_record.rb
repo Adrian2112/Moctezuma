@@ -44,19 +44,26 @@ class ActiveRecord
     fields.each do |row|
       attributes_hash.merge!({ row[0].to_s => self.send(row[0]) })
     end
-
+    fields.free
+    attributes_hash.each { |k,v| puts "#{k} => #{v}"}
     id = attributes_hash.delete("id") 
-    if attributes_hash.id == nil
-      fields_names = attributes_hash.collect{|k, v| k}.join(",")
-      fields_values = attributes_hash.collect{|k, v| "'" + v.to_s + "'"}.join(",")
+    p id
+    if id.nil?
+      fields_names = attributes_hash.collect{ |k, v| k }.join(",")
+      fields_values = attributes_hash.collect{ |k, v| "'" + v.to_s + "'" }.join(",")
       query = "INSERT INTO #{self.class} (#{fields_names}) VALUES (#{fields_values})"
     else
       values = attributes_hash.collect{|k ,v | "#{k}='#{v}'"}.join(",")
       query = "UPDATE #{self.class} SET #{values} WHERE id = #{id}"
 
     end
+    puts query
     db.query(query)
-    fields.free
+    
+    if id.nil?
+      db.query("SELECT LAST_INSERT_ID();").each { |r| self.id = r[0] }      
+    end
+    
     
   end
 

@@ -1,3 +1,15 @@
-<h2><%= @usuario.nombre %></h2>
-<h2><%= @usuario.email %></h2>
-<a href="/usuarios/new">new</a>
+<p>
+	<strong>Nombre:</strong>
+	<%= @usuario.nombre %>
+</p>
+<p>
+	<strong>Edad:</strong>
+	<%= @usuario.edad %>
+</p>
+<p>
+	<strong>Email:</strong>
+	<%= @usuario.email %>
+</p>
+
+<a href="/usuarios/new">new</a> |
+<a href="/usuarios">ver todos</a>

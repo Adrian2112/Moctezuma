@@ -11,6 +11,10 @@
 			<td><%= usuario.nombre %></td>
 			<td><%= usuario.edad %></td>
 			<td><%= usuario.email %></td>
+			<td><a href= "/usuarios/<%= usuario.id %>">show</a></td>
+			<td><a href= "/usuarios/edit/<%= usuario.id %>">edit</a></td>
 		</tr>
 	<% end %>
 </table>
+<br/>
+<a href="/usuarios/new">new</a>

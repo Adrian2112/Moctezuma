@@ -1,6 +1,6 @@
-<h1>Nuevo usuario</h1>
+<h1>Editar usuario</h1>
 
-<form action="/usuarios/create" method="post">
+<form action="/usuarios/update/<%= @usuario.id %>" method="post">
 	<p>
 		<label for="nombre">Nombre</label><br/>
 		<input type="text" name="nombre" value="<%= @usuario.nombre %>"/>
@@ -16,7 +16,7 @@
 		<input type="text" name="email" value="<%= @usuario.email %>" />
 	</p>
 	
-	<input type="submit" value="Guardar" />
+	<input type="submit" value="Editar" />
 </form>
 
 <a href="/usuarios/show">Show</a>
